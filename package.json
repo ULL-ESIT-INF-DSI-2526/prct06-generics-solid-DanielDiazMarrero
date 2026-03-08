@@ -7,7 +7,7 @@
     "dev": "tsc-watch --onSuccess \"node dist/ej2.js\"",
     "doc": "typedoc",
     "test": "vitest run",
-    "coverage": "vitest run --coverage --coverage.include='src/**/*.ts' --coverage.reporter=text --coverage.reporter=html"
+    "coverage": "vitest run --coverage --coverage.include='src/**/*.ts' --coverage.reporter=text --coverage.reporter=html --coverage.reporter=lcov"
   },
   "repository": {
     "type": "git",
