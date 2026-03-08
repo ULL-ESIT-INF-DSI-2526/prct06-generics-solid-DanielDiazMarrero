@@ -8,7 +8,7 @@ type ID = string;
    INTERFACES DE REPOSITORIO (GENÉRICAS)
 ===================================================== */
 
-interface Repository<T, K> {
+export interface Repository<T, K> {
   add(item: T): void;
   remove(id: K): void;
   getById(id: K): T | undefined;
@@ -19,24 +19,24 @@ interface Repository<T, K> {
    INTERFACES DE BÚSQUEDA (ISP)
 ===================================================== */
 
-interface SearchByName<T> {
+export interface SearchByName<T> {
   searchByName(name: string): T[];
 }
 
-interface SearchByTags<T> {
+export interface SearchByTags<T> {
   searchByTag(tag: string): T[];
 }
 
-interface SearchByYear<T> {
+export interface SearchByYear<T> {
   searchByYear(year: number): T[];
   searchByYearRange(min: number, max: number): T[];
 }
 
-interface SearchByFollowers<T> {
+export interface SearchByFollowers<T> {
   searchByMinFollowers(minFollowers: number): T[];
 }
 
-interface SearchByOptional<T> {
+export interface SearchByOptional<T> {
   searchOptional(optional: boolean): T[];
 }
 
@@ -224,7 +224,7 @@ export class RecipeTimeEstimator {
    PRESENTACIÓN (DEPENDENCY INVERSION)
 ===================================================== */
 
-interface TableRenderer<T> {
+export interface TableRenderer<T> {
   render(data: T[]): void;
 }
 
