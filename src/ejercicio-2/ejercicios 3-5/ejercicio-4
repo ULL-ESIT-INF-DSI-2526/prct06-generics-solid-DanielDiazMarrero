@@ -1,0 +1,45 @@
+interface OfficeMachine {
+  print(doc: string): void;
+  scan(doc: string): string;
+  fax(doc: string): void;
+}
+
+class BasicPrinter implements OfficeMachine {
+  print(doc: string): void {
+    console.log("Printing:", doc);
+  }
+  scan(_: string): string {
+    throw new Error("Not supported");
+  }
+  fax(_: string): void {
+    throw new Error("Not supported");
+  }
+}
+
+function sendFax(m: OfficeMachine, doc: string) {
+  m.fax(doc);
+}
+
+// Aplicamos SOLID
+
+interface PrintMachine {
+  print(doc: string): void;
+}
+
+interface ScanMachine {
+  scan(doc: string): string;
+}
+
+interface FaxMachine {
+  fax(doc: string): void;
+}
+
+class BasicPrinter_ implements PrintMachine {
+  print(doc: string): void {
+    console.log("Printing:", doc);
+  }
+}
+
+function sendFax_(m: FaxMachine, doc: string) {
+  m.fax(doc)
+}

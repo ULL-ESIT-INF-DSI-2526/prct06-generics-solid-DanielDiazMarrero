@@ -1,0 +1,67 @@
+type Shape =
+  | { kind: "circle"; radius: number }
+  | { kind: "rect"; width: number; height: number }
+  | { kind: "tri"; base: number; height: number };
+
+class AreaCalculator {
+  area(s: Shape): number {
+    switch (s.kind) {
+      case "circle": return Math.PI * s.radius * s.radius;
+      case "rect": return s.width * s.height;
+      case "tri": return (s.base * s.height) / 2;
+      default: throw new Error("Unknown shape");
+    }
+  }
+}
+
+
+// Aplicamos los principios SOLID
+interface AreaCalculator_ {
+  area(): number;
+}
+
+abstract class Polygon {
+  constructor(public name: string) {}
+}
+
+class Circle extends Polygon implements AreaCalculator_{
+  constructor(
+    public radius: number,
+    name: string = "Circle"
+  ) {
+    super(name)
+  }
+
+  area(): number {
+    return this.radius**2
+  }
+}
+
+class Rectangle extends Polygon{
+  constructor(
+    public width: number,
+    public height: number,
+    name: string = "Rectangle"
+  ) {
+    super(name)
+  }
+
+  area(): number {
+    return this.width * this.height
+  }
+}
+
+class Triangle extends Polygon{
+  constructor(
+    public base: number,
+    public height: number,
+    name: string = "Triangle"
+  ) {
+    super(name)
+  }
+
+  area(): number {
+    return this.base * this.height
+  }
+}
+

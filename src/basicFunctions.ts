@@ -1,6 +1,0 @@
-
-
-/**
- * Funcion
- */
-export function add() {}

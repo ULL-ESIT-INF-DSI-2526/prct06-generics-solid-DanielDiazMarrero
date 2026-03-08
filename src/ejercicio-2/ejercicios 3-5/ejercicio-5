@@ -1,0 +1,38 @@
+class MySqlUserRepository {
+  findById(id: string): { id: string; name: string } | null {
+    console.log("Querying MySQL...");
+    return { id, name: "Ada" };
+  }
+}
+
+class UserService {
+  private repo = new MySqlUserRepository();
+
+  getUserName(id: string): string {
+    const user = this.repo.findById(id);
+    if (!user) throw new Error("User not found");
+    return user.name.toUpperCase();
+  }
+}
+
+// Aplicamo SOLID
+interface UserRepository {
+  findById(id: string): { id: string; name: string } | null;
+}
+
+class MySqlUserRepository_ implements UserRepository {
+  findById(id: string): { id: string; name: string } | null {
+    console.log("Querying MySQL...");
+    return { id, name: "Ada" };
+  }
+}
+
+class UserService_ {
+  constructor(private repo: UserRepository) {} // Con esto ya UserService no depende de MySQL. Podría usar otra BD que tenga la interfaz UserRepository
+
+  getUserName(id: string): string {
+    const user = this.repo.findById(id);
+    if (!user) throw new Error("User not found");
+    return user.name.toUpperCase();
+  }
+}
